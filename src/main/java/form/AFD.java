@@ -33,6 +33,7 @@ public class AFD extends javax.swing.JFrame {
     String[][] lista=new String[20][6];
     int f0=0,f1=0,f2=0,f3=0,f4=0,f5=0;
     int p1=0,p2=0;
+    boolean error=false;
     DefaultTableModel modelo=new DefaultTableModel();
     public AFD() {
         initComponents();
@@ -111,6 +112,10 @@ public class AFD extends javax.swing.JFrame {
                         //verificar numero decimal columna 2
                         lista[f2][2]="[ "+(i+1)+" ][ "+(j+1)+" ]   "+palabra[i][j];
                         f2++; p2++;
+                    }else{
+                        //manejar los erroresencontados
+                        error=true;
+                        jTextArea3.append("[ "+(i+1)+" ][ "+(j+1)+" ]   "+palabra[i][j]+"\n");
                     }
                     
                 }/**/
@@ -119,18 +124,19 @@ public class AFD extends javax.swing.JFrame {
     }
     
     public void agregar(){
-        int x=0;
-        String[] datos=new String[6];
-        for(int i=0;i<20;i++){
-            datos[0]=lista[i][0];
-            datos[1]=lista[i][1];
-            datos[2]=lista[i][2];
-            datos[3]=lista[i][3];
-            datos[4]=lista[i][4];
-            datos[5]=lista[i][5];
-            modelo.addRow(datos);
+        if(error==false){
+            int x=0;
+            String[] datos=new String[6];
+            for(int i=0;i<20;i++){
+                datos[0]=lista[i][0];
+                datos[1]=lista[i][1];
+                datos[2]=lista[i][2];
+                datos[3]=lista[i][3];
+                datos[4]=lista[i][4];
+                datos[5]=lista[i][5];
+                modelo.addRow(datos);
+            }
         }
-        
     }
     /**
      * This method is called from within the constructor to initialize the form.
