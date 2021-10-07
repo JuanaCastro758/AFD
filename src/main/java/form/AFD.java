@@ -257,6 +257,11 @@ public class AFD extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(204, 0, 0));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Buscar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, -1, -1));
 
         jTextArea2.setEditable(false);
@@ -329,6 +334,31 @@ public class AFD extends javax.swing.JFrame {
             System.out.println(e.getMessage()+"Error en el boton inicio");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try{
+            jTextArea2.setText("");
+            String text=jTextField1.getText();
+            for(int i=0;i<20;i++){
+                for(int j=0;j<20;j++){
+                    if(palabra[i][j]!=null){
+                        int y=0;
+                        for(int x=0;x<text.length();x++){
+                            String letra=""+text.charAt(x);
+                            if(letra.equalsIgnoreCase(""+palabra[i][j].charAt(x))){
+                                y++;
+                            }
+                        }
+                        if(y==text.length()){
+                            jTextArea2.append("[ "+(i+1)+" ][ "+(j+1)+" ]   "+palabra[i][j]+"\n");
+                        }
+                    }
+                }
+            }
+        }catch(Exception e){
+            System.out.println("Error en la busqueda de patrones, bonton 3 "+e);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
