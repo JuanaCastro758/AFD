@@ -46,6 +46,8 @@ public class Tokens {
         Numero[] numero=Numero.values();
         boolean valido=false;
         int cantidad=0;
+        int punto=0;
+        int pos=0;
         for(int j=0;j<palabra.length();j++){
             String num=""+palabra.charAt(j);
             for(int i=0; i<10;i++){
@@ -54,8 +56,15 @@ public class Tokens {
                     System.out.println(" "+cantidad);
                     cantidad++;
                     i=10;
+                }else if(num.equals(".")){
+                    punto++;
+                    i=10;
+                    pos=j;
                 }
             }
+        }
+        if(palabra.length()==(cantidad+punto) && punto==1 && pos!=0 && pos!=(palabra.length()-1)){
+            valido=true;
         }
         return valido;
     }
