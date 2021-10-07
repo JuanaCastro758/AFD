@@ -107,9 +107,10 @@ public class AFD extends javax.swing.JFrame {
                         //signo de agrupacion columna 5
                         lista[f5][5]="[ "+(i+1)+" ][ "+(j+1)+" ]   "+palabra[i][j];
                         f5++; p2++;
-                    }else{
-                        //verificar numero decimal e identificador
-                        
+                    }else if(token.decimal(palabra[i][j])==true){
+                        //verificar numero decimal columna 2
+                        lista[f2][2]="[ "+(i+1)+" ][ "+(j+1)+" ]   "+palabra[i][j];
+                        f2++; p2++;
                     }
                     
                 }/**/
@@ -151,6 +152,8 @@ public class AFD extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -230,6 +233,18 @@ public class AFD extends javax.swing.JFrame {
         jLabel12.setText("------------Busqueda de Patrones------------");
         jPanel1.add(jLabel12);
 
+        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel13.setFont(new java.awt.Font("Tempus Sans ITC", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("------------Busqueda de Patrones------------");
+        jPanel1.add(jLabel13);
+
+        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel14.setFont(new java.awt.Font("Tempus Sans ITC", 0, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("------------Busqueda de Patrones------------");
+        jPanel1.add(jLabel14);
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 350, 30));
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 160, 30));
 
@@ -275,7 +290,7 @@ public class AFD extends javax.swing.JFrame {
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Tempus Sans ITC", 0, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("------------------------Reporte de Tokens------------------------");
+        jLabel8.setText("[ Fila ][ Columna ]------------------------Reporte de Tokens------------------------");
         jPanel5.add(jLabel8);
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 830, 30));
@@ -351,6 +366,8 @@ public class AFD extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
