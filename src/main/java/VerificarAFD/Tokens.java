@@ -42,6 +42,24 @@ public class Tokens {
         return valido;
     }
     
+    public boolean decimal(String palabra){
+        Numero[] numero=Numero.values();
+        boolean valido=false;
+        int cantidad=0;
+        for(int j=0;j<palabra.length();j++){
+            String num=""+palabra.charAt(j);
+            for(int i=0; i<10;i++){
+                System.out.println("--"+numero[i].getNumero());
+                if(num.equals(numero[i].getNumero())){
+                    System.out.println(" "+cantidad);
+                    cantidad++;
+                    i=10;
+                }
+            }
+        }
+        return valido;
+    }
+    
     public boolean letra(String palabra){
         boolean valido=false;
         Letra[] letra=Letra.values();
@@ -120,7 +138,7 @@ public class Tokens {
                 if(num.equals(sig[i].getSignoAgrupacion())){
                     System.out.println(" "+cantidad);
                     cantidad++;
-                    i=4;
+                    i=6;
                 }
             }
         }
