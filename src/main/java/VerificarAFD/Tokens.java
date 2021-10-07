@@ -72,20 +72,29 @@ public class Tokens {
     public boolean letra(String palabra){
         boolean valido=false;
         Letra[] letra=Letra.values();
+        Numero[] numero=Numero.values();
+        boolean posLetra=false;
         int cantidad=0;
         for(int j=0;j<palabra.length();j++){
             String num=""+palabra.charAt(j);
-           System.out.println(num);
+            //recorre todo el enum de letras
             for(int i=0; i<26;i++){
-                System.out.println("--"+letra[i]);
                 if(num.equalsIgnoreCase(letra[i].toString())){
-                    System.out.println(" "+cantidad);
                     cantidad++;
                     i=26;
+                    if(j==0){ posLetra=true;}
                 }
             }
+            //recorre todo el enum de numeros
+            for(int i=0; i<10;i++){
+                if(num.equals(numero[i].getNumero())){
+                    cantidad++;
+                    i=10;
+                }
+            }
+            
         }
-        if(palabra.length()==cantidad){
+        if(palabra.length()==cantidad && posLetra==true){
             valido=true;
         }
         return valido;
