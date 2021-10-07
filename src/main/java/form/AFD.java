@@ -30,8 +30,9 @@ public class AFD extends javax.swing.JFrame {
     String[][] palabra=new String[20][20];
     private int fila=0;
     private int columna=0;
-    String[][] lista=new String[6][20];
+    String[][] lista=new String[20][6];
     int f0=0,f1=0,f2=0,f3=0,f4=0,f5=0;
+    int p1=0,p2=0;
     DefaultTableModel modelo=new DefaultTableModel();
     public AFD() {
         initComponents();
@@ -69,6 +70,7 @@ public class AFD extends javax.swing.JFrame {
                     palabra[fila][columna]=newCadena;
                     newCadena="";
                     columna++;
+                    p1++;
                 }
                 if(cadena.charAt(i)=='\n'){
                     fila++;
@@ -87,24 +89,30 @@ public class AFD extends javax.swing.JFrame {
                 if(palabra[i][j]!=null){
                     if(token.numero(palabra[i][j])==true){
                         //numero Enteros columna 1
-                        jTextArea3.append("[ "+(i)+" ][ "+(j)+" ]   "+palabra[i][j]+" \n");
                         lista[f1][1]="[ "+(i+1)+" ][ "+(j+1)+" ]   "+palabra[i][j];
-                        f1++;
+                        f1++; p2++;
                     }else if(token.letra(palabra[i][j])==true){
                         //identificador Columna 0
-                        jTextArea3.append("[ "+(i)+" ][ "+(j)+" ]   "+palabra[i][j]+" \n");
                         lista[f0][0]="[ "+(i+1)+" ][ "+(j+1)+" ]   "+palabra[i][j];
-                        f0++;
+                        f0++; p2++;
+                    }else if(token.signo(palabra[i][j])==true){
+                        //signo puntuacion columna 3
+                        lista[f3][3]="[ "+(i+1)+" ][ "+(j+1)+" ]   "+palabra[i][j];
+                        f3++; p2++;
+                    }else if(token.operador(palabra[i][j])==true){
+                        //Operador columna 4
+                        lista[f4][4]="[ "+(i+1)+" ][ "+(j+1)+" ]   "+palabra[i][j];
+                        f4++; p2++;
+                    }else if(token.signoAgrupacion(palabra[i][j])==true){
+                        //signo de agrupacion columna 5
+                        lista[f5][5]="[ "+(i+1)+" ][ "+(j+1)+" ]   "+palabra[i][j];
+                        f5++; p2++;
+                    }else{
+                        //verificar numero decimal e identificador
+                        
                     }
                     
-                }/*else if(token.signo(palabra[i][j])==true){
-                    jTextArea3.append(palabra[i][j]+" \n");
-                    lista[f1][0]="[ "+(i+1)+" ][ "+(j+1)+" ]   "+palabra[i][j];
-                }else if(token.operador(palabra[i][j])==true){
-                    jTextArea3.append(palabra[i][j]+" \n");
-                }else if(token.signoAgrupacion(palabra[i][j])==true){
-                    jTextArea3.append(palabra[i][j]+" \n");
-                }*/
+                }/**/
             }
         }
     }
@@ -112,23 +120,16 @@ public class AFD extends javax.swing.JFrame {
     public void agregar(){
         int x=0;
         String[] datos=new String[6];
-        /*for(int i=0;i<20;i++){
-            for(int j=0;j<6;j++){
-                if(lista[j][i]!=null){
-                    datos[x]=lista[j][i];
-                }else{datos[x]=" ";} 
-                
-            }
+        for(int i=0;i<20;i++){
+            datos[0]=lista[i][0];
+            datos[1]=lista[i][1];
+            datos[2]=lista[i][2];
+            datos[3]=lista[i][3];
+            datos[4]=lista[i][4];
+            datos[5]=lista[i][5];
             modelo.addRow(datos);
-            x++;
-        }*/
-        datos[0]=lista[0][1];
-        datos[1]=" 0";
-        datos[2]=" 4";
-        datos[3]=" ";
-        datos[4]=" ";
-        datos[5]=" ";
-        modelo.addRow(datos);
+        }
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
